@@ -3,6 +3,7 @@ package jpabook.jpashop.domain;
 import javax.persistence.*;
 
 @Entity
+@Table(name="ORDER_ITEM")
 public class OrderItem {
 
     @Id
@@ -11,13 +12,22 @@ public class OrderItem {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(name = "ORDER_ID")
+    @JoinColumn(name = "ORDER_ID")
     private Order order;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(name = "ITEM_ID")
+    @JoinColumn(name = "ITEM_ID")
     private Item item;
 
+    public OrderItem() {
+    }
+
+    public OrderItem(Order order, Item item, int orderPrice, int count) {
+        this.order = order;
+        this.item = item;
+        this.orderPrice = orderPrice;
+        this.count = count;
+    }
 
     private int orderPrice;
 
