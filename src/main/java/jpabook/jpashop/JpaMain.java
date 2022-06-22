@@ -1,6 +1,8 @@
 package jpabook.jpashop;
 
 import jpabook.jpashop.domain.Member;
+import jpabook.jpashop.domain.Order;
+import jpabook.jpashop.domain.OrderItem;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -19,6 +21,9 @@ public class JpaMain {
 
         try {
 //            Member member = new Member();
+
+            Order order = new Order();
+            order.addOrderItem(new OrderItem());
 
 
 //            em.persist();
