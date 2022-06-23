@@ -17,7 +17,6 @@ public class Member {
     private String street;
     private String zipcode;
 
-
     @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>();
     //관례상 new ArrayList를 해줌
@@ -60,5 +59,9 @@ public class Member {
 
     public void setZipcode(String zipcode) {
         this.zipcode = zipcode;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
     }
 }

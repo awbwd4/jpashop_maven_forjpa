@@ -26,6 +26,12 @@ public class Order {
     @Enumerated(EnumType.STRING)//열거형을 쓸때는 반드시 String
     private OrderStatus orderStatus;//ORDER, CANCEL
 
+    /*연관관계 매핑 메서드*/
+    //member
+    public void addMember(Member member) {
+        this.member = member;
+        member.getOrders().add(this);
+    }
 
     public Long getId() {
         return id;
@@ -39,9 +45,9 @@ public class Order {
         return member;
     }
 
-    public void setMember(Member member) {
-        this.member = member;
-    }
+//    public void setMember(Member member) {
+//        this.member = member;
+//    }
 
     public LocalDateTime getOrderDate() {
         return orderDate;
@@ -59,8 +65,8 @@ public class Order {
         this.orderStatus = orderStatus;
     }
 
-    public void addOrderItem(OrderItem orderItem) {
-        orderItems.add(orderItem);
-        orderItem.setOrder(this);
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
     }
+
 }

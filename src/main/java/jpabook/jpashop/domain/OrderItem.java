@@ -29,6 +29,22 @@ public class OrderItem {
         this.count = count;
     }
 
+    /*연관관계 매핑 메서드*/
+    // order
+    // OrderItem과 Order는 양방향 관계
+    public void addOrder(Order order) {
+        //order필드 세팅
+        this.order = order;
+        //Order객체의 List<OrderItem>  - 가짜 매핑쪽 세팅
+        order.getOrderItems().add(this);
+
+    }
+
+    // item
+    // OrderItem 과 Item은 단방향 관계
+
+
+
     private int orderPrice;
 
     private int count;

@@ -37,15 +37,30 @@ public class JpaMain {
 
             //주문 객체 생성
             Order order = new Order();
-            order.setMember(member);
+//            order.setMember(member);//이렇게만 하면 단방향
+            order.addMember(member); //이렇게 해야 양방향
+            em.persist(order);
 
             OrderItem orderItem = new OrderItem(order, item, 10000, 10);
-
+            orderItem.addOrder(order);
             em.persist(orderItem);
 
-            order.addOrderItem(orderItem);
 
-            em.persist(order);
+//            em.flush();
+//            em.clear();
+
+            System.out.println("=============");
+            if(member.getOrders().size() > 0){
+                for (Order memberOrder : member.getOrders()) {
+                    System.out.println("memberOrder = " + memberOrder);
+                }
+            }else{
+                System.out.println("회원 내 주문내역이 없음.");
+            }
+
+
+            System.out.println("=============");
+
 
             tx.commit();
         } catch (Exception e) {
