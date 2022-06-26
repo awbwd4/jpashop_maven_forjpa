@@ -18,6 +18,10 @@ public class Order {
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
+    @OneToOne
+    @JoinColumn(name="DELIVERY_ID")
+    private Delivery delivery;
+
     @OneToMany(mappedBy = "order")
     private List<OrderItem> orderItems = new ArrayList<>();
 
@@ -25,6 +29,10 @@ public class Order {
 
     @Enumerated(EnumType.STRING)//열거형을 쓸때는 반드시 String
     private OrderStatus orderStatus;//ORDER, CANCEL
+
+
+
+
 
     /*연관관계 매핑 메서드*/
     //member
