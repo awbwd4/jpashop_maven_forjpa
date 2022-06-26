@@ -1,9 +1,6 @@
 package jpabook.jpashop;
 
-import jpabook.jpashop.domain.Item;
-import jpabook.jpashop.domain.Member;
-import jpabook.jpashop.domain.Order;
-import jpabook.jpashop.domain.OrderItem;
+import jpabook.jpashop.domain.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -22,44 +19,12 @@ public class JpaMain {
 
         try {
             // 멤버, 주문, 아이템 생성
-            Member member = new Member();
-            member.setName("m1");
-            em.persist(member);
 
+            Book book = new Book();
+            book.setName("JPA");
+            book.setAuthor("a");
+            em.persist(book);
 
-            Item item = new Item();
-            item.setName("jpa");
-            item.setPrice(10000);
-            item.setStockQuantity(100);
-            em.persist(item);
-
-            /*아이템 주문*/
-
-            //주문 객체 생성
-            Order order = new Order();
-//            order.setMember(member);//이렇게만 하면 단방향
-            order.addMember(member); //이렇게 해야 양방향
-            em.persist(order);
-
-            OrderItem orderItem = new OrderItem(order, item, 10000, 10);
-            orderItem.addOrder(order);
-            em.persist(orderItem);
-
-
-//            em.flush();
-//            em.clear();
-
-            System.out.println("=============");
-            if(member.getOrders().size() > 0){
-                for (Order memberOrder : member.getOrders()) {
-                    System.out.println("memberOrder = " + memberOrder);
-                }
-            }else{
-                System.out.println("회원 내 주문내역이 없음.");
-            }
-
-
-            System.out.println("=============");
 
 
             tx.commit();
