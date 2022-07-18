@@ -27,6 +27,7 @@ public class JpaMain {
 
 
 
+
             tx.commit();
         } catch (Exception e) {
             System.out.println("catch");
